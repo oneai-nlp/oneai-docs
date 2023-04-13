@@ -1,0 +1,19 @@
+name: Sync to ReadMe.io
+
+# Run workflow for every push to the `main` branch
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout this repo
+        uses: actions/checkout@v3
+
+      - name: GitHub Action
+        uses: readmeio/rdme@v8
+        with:
+          rdme: docs ./ --key=${{ secrets.README_API_KEY }}
